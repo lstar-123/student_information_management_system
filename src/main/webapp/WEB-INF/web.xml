@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+
+    <display-name>Student Information Management System</display-name>
+
+    <!-- 登录 Servlet，对应桌面版 LoginUI + *LoginSystem -->
+    <servlet>
+        <servlet-name>loginServlet</servlet-name>
+        <servlet-class>com.lingxing.servlet.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>loginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>adminStudentServlet</servlet-name>
+        <servlet-class>com.lingxing.servlet.AdminStudentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adminStudentServlet</servlet-name>
+        <url-pattern>/admin/student</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>adminTeacherServlet</servlet-name>
+        <servlet-class>com.lingxing.servlet.AdminTeacherServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adminTeacherServlet</servlet-name>
+        <url-pattern>/admin/teacher</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>teacherStudentServlet</servlet-name>
+        <servlet-class>com.lingxing.servlet.TeacherStudentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>teacherStudentServlet</servlet-name>
+        <url-pattern>/teacher/student</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>teacherCourseServlet</servlet-name>
+        <servlet-class>com.lingxing.servlet.TeacherCourseServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>teacherCourseServlet</servlet-name>
+        <url-pattern>/teacher/course</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>teacherScoreServlet</servlet-name>
+        <servlet-class>com.lingxing.servlet.TeacherScoreServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>teacherScoreServlet</servlet-name>
+        <url-pattern>/teacher/score</url-pattern>
+    </servlet-mapping>
+
+    <!-- 默认欢迎页：身份选择页 -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+</web-app>
