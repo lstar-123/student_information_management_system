@@ -4,16 +4,18 @@ import com.lingxing.bean.Admin;
 import com.lingxing.bean.Student;
 import com.lingxing.bean.Teacher;
 import com.lingxing.dao.AdminDao;
-import com.lingxing.dao.StudentDao;
-import com.lingxing.dao.TeacherDao;
+import com.lingxing.dao.StudentMapper;
+import com.lingxing.dao.TeacherMapper;
+import com.lingxing.util.MyBatisUtil;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.apache.ibatis.session.SqlSession;
+
 import java.io.IOException;
-import java.sql.SQLException;
 
 /**
  * 登录 Servlet，对应桌面版本的 AdminLoginSystem / StudentLoginSystem / TeacherLoginSystem。
@@ -37,7 +39,7 @@ public class LoginServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
 
-        try {
+        try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
             switch (role) {
                 case "admin": {
                     AdminDao adminDao = new AdminDao();
@@ -53,8 +55,8 @@ public class LoginServlet extends HttpServlet {
                     break;
                 }
                 case "teacher": {
-                    TeacherDao teacherDao = new TeacherDao();
-                    Teacher teacher = teacherDao.findByNumberAndPassword(username.trim(), password.trim());
+                    TeacherMapper teacherMapper = sqlSession.getMapper(TeacherMapper.class);
+                    Teacher teacher = teacherMapper.findByNumberAndPassword(username.trim(), password.trim());
                     if (teacher != null) {
                         session.setAttribute("currentUser", teacher);
                         session.setAttribute("role", "teacher");
@@ -66,8 +68,8 @@ public class LoginServlet extends HttpServlet {
                     break;
                 }
                 case "student": {
-                    StudentDao studentDao = new StudentDao();
-                    Student student = studentDao.findByNumberAndPassword(username.trim(), password.trim());
+                    StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+                    Student student = studentMapper.findByNumberAndPassword(username.trim(), password.trim());
                     if (student != null) {
                         session.setAttribute("currentUser", student);
                         session.setAttribute("role", "student");
@@ -83,7 +85,7 @@ public class LoginServlet extends HttpServlet {
                     request.getRequestDispatcher("/login.jsp").forward(request, response);
                 }
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new ServletException("登录时数据库错误", e);
         }
     }

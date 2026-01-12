@@ -1,13 +1,16 @@
 package com.lingxing.servlet;
 
-import com.lingxing.dao.TeacherDao;
+import com.lingxing.dao.TeacherMapper;
+import com.lingxing.bean.Teacher;
+import com.lingxing.util.MyBatisUtil;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.ibatis.session.SqlSession;
+
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Random;
 
 public class AdminTeacherServlet extends HttpServlet {
@@ -33,50 +36,67 @@ public class AdminTeacherServlet extends HttpServlet {
         resp.sendRedirect(req.getContextPath() + "/admin/index.jsp");
     }
 
-    private void handleAdd(HttpServletRequest req) throws SQLException {
+    private void handleAdd(HttpServletRequest req) throws Exception {
         String name = req.getParameter("teacherName");
         if (name == null || name.trim().isEmpty()) {
-            throw new SQLException("教师姓名不能为空");
+            throw new Exception("教师姓名不能为空");
         }
-        TeacherDao dao = new TeacherDao();
         String number = generateUniqueTeacherNumber();
-        dao.addTeacher(number, name.trim(), "12345678");
+        
+        try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
+            TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);
+            Teacher teacher = new Teacher();
+            teacher.setTeacherNumber(number);
+            teacher.setTeacherName(name.trim());
+            teacher.setPassword("12345678");
+            mapper.insert(teacher);
+        }
     }
 
-    private void handleEdit(HttpServletRequest req) throws SQLException {
+    private void handleEdit(HttpServletRequest req) throws Exception {
         String idStr = req.getParameter("teacherId");
-        if (idStr == null) throw new SQLException("缺少教师ID");
+        if (idStr == null) throw new Exception("缺少教师ID");
         int teacherId = Integer.parseInt(idStr);
         String name = req.getParameter("teacherName");
         String password = req.getParameter("password");
         if (name == null || name.trim().isEmpty()) {
-            throw new SQLException("教师姓名不能为空");
+            throw new Exception("教师姓名不能为空");
         }
         String pwd = (password == null || password.trim().isEmpty()) ? "12345678" : password;
-        TeacherDao dao = new TeacherDao();
-        dao.updateTeacher(teacherId, name.trim(), pwd);
+        
+        try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
+            TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);
+            Teacher teacher = new Teacher();
+            teacher.setTeacherId(teacherId);
+            teacher.setTeacherName(name.trim());
+            teacher.setPassword(pwd);
+            mapper.update(teacher);
+        }
     }
 
-    private void handleDelete(HttpServletRequest req) throws SQLException {
+    private void handleDelete(HttpServletRequest req) throws Exception {
         String idStr = req.getParameter("teacherId");
-        if (idStr == null) throw new SQLException("缺少教师ID");
+        if (idStr == null) throw new Exception("缺少教师ID");
         int teacherId = Integer.parseInt(idStr);
-        TeacherDao dao = new TeacherDao();
-        dao.deleteTeacher(teacherId);
+        
+        try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
+            TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);
+            mapper.deleteById(teacherId);
+        }
     }
 
-    private String generateUniqueTeacherNumber() throws SQLException {
-        TeacherDao dao = new TeacherDao();
+    private String generateUniqueTeacherNumber() throws Exception {
         Random random = new Random();
-        for (int i = 0; i < 20; i++) {
-            int number = 100000 + random.nextInt(900000);
-            String teacherNumber = String.valueOf(number);
-            if (dao.findByNumber(teacherNumber) == null) {
-                return teacherNumber;
+        try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
+            TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);
+            for (int i = 0; i < 20; i++) {
+                int number = 100000 + random.nextInt(900000);
+                String teacherNumber = String.valueOf(number);
+                if (mapper.findByNumber(teacherNumber) == null) {
+                    return teacherNumber;
+                }
             }
         }
-        throw new SQLException("生成教师工号失败，请重试");
+        throw new Exception("生成教师工号失败，请重试");
     }
 }
-
-

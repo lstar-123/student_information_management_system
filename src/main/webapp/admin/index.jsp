@@ -2,8 +2,10 @@
 <%@ page import="java.util.*" %>
 <%@ page import="com.lingxing.bean.Teacher" %>
 <%@ page import="com.lingxing.bean.Student" %>
-<%@ page import="com.lingxing.dao.TeacherDao" %>
-<%@ page import="com.lingxing.dao.StudentDao" %>
+<%@ page import="com.lingxing.dao.TeacherMapper" %>
+<%@ page import="com.lingxing.dao.StudentMapper" %>
+<%@ page import="com.lingxing.util.MyBatisUtil" %>
+<%@ page import="org.apache.ibatis.session.SqlSession" %>
 <%
     Object user = session.getAttribute("currentUser");
     String role = (String) session.getAttribute("role");
@@ -11,10 +13,14 @@
         response.sendRedirect(request.getContextPath() + "/login.jsp?role=admin");
         return;
     }
-    TeacherDao teacherDao = new TeacherDao();
-    StudentDao studentDao = new StudentDao();
-    List<Teacher> teachers = teacherDao.findAll();
-    List<Student> students = studentDao.findAll();
+    List<Teacher> teachers;
+    List<Student> students;
+    try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
+        TeacherMapper teacherMapper = sqlSession.getMapper(TeacherMapper.class);
+        StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+        teachers = teacherMapper.findAll();
+        students = studentMapper.findAll();
+    }
 %>
 <!DOCTYPE html>
 <html lang="zh-CN">

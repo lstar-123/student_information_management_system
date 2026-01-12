@@ -2,8 +2,10 @@
 <%@ page import="java.util.*" %>
 <%@ page import="com.lingxing.bean.Teacher" %>
 <%@ page import="com.lingxing.bean.Student" %>
-<%@ page import="com.lingxing.dao.StudentDao" %>
-<%@ page import="com.lingxing.dao.CourseDao" %>
+<%@ page import="com.lingxing.dao.StudentMapper" %>
+<%@ page import="com.lingxing.dao.CourseMapper" %>
+<%@ page import="com.lingxing.util.MyBatisUtil" %>
+<%@ page import="org.apache.ibatis.session.SqlSession" %>
 <%
     Object user = session.getAttribute("currentUser");
     String role = (String) session.getAttribute("role");
@@ -12,10 +14,14 @@
         return;
     }
     Teacher teacher = (Teacher) user;
-    StudentDao studentDao = new StudentDao();
-    CourseDao courseDao = new CourseDao();
-    List<Student> students = studentDao.findAll();
-    List<CourseDao.CourseItem> courses = courseDao.findAll();
+    List<Student> students;
+    List<CourseMapper.CourseItem> courses;
+    try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
+        StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+        CourseMapper courseMapper = sqlSession.getMapper(CourseMapper.class);
+        students = studentMapper.findAll();
+        courses = courseMapper.findAll();
+    }
 %>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -170,7 +176,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <% for (CourseDao.CourseItem c : courses) { %>
+                        <% for (CourseMapper.CourseItem c : courses) { %>
                         <tr>
                             <td><%=c.getId()%></td>
                             <td>
@@ -218,7 +224,7 @@
                         <div class="col-md-3">
                             <label class="form-label">课程</label>
                             <select name="courseName" class="form-select" required>
-                                <% for (CourseDao.CourseItem c : courses) { %>
+                                <% for (CourseMapper.CourseItem c : courses) { %>
                                 <option><%=c.getName()%></option>
                                 <% } %>
                             </select>
@@ -256,7 +262,7 @@
                         <div class="col-md-3">
                             <label class="form-label">课程</label>
                             <select name="courseName" class="form-select" required>
-                                <% for (CourseDao.CourseItem c : courses) { %>
+                                <% for (CourseMapper.CourseItem c : courses) { %>
                                 <option><%=c.getName()%></option>
                                 <% } %>
                             </select>
@@ -287,7 +293,7 @@
                         </div>
                         <div class="col-md-3">
                             <select name="courseName" class="form-select" required>
-                                <% for (CourseDao.CourseItem c : courses) { %>
+                                <% for (CourseMapper.CourseItem c : courses) { %>
                                 <option><%=c.getName()%></option>
                                 <% } %>
                             </select>
