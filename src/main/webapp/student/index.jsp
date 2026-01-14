@@ -14,51 +14,252 @@
 <head>
     <meta charset="UTF-8">
     <title>我的成绩 - 学生成绩管理系统</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* ================= 基础 ================= */
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background:
+                    radial-gradient(circle at 20% 20%, rgba(99,102,241,.25), transparent 40%),
+                    radial-gradient(circle at 80% 80%, rgba(14,165,233,.18), transparent 40%),
+                    linear-gradient(180deg, #020617, #020617);
+            color: #e5e7eb;
+            overflow-x: hidden;
+        }
+
+        /* ================= 背景层 ================= */
+        #star-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+        }
+        #cursor-glow {
+            position: fixed;
+            width: 420px;
+            height: 420px;
+            pointer-events: none;
+            background: radial-gradient(circle,
+            rgba(99,102,241,.18),
+            transparent 60%);
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+        .background-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 2;
+            background-image:
+                    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        /* ================= 内容层 ================= */
+        .main-wrapper {
+            position: relative;
+            z-index: 3;
+        }
+
+        /* ================= 组件样式 ================= */
+        .navbar {
+            background: rgba(2,6,23,.85) !important;
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(148,163,184,.15);
+        }
+
+        .navbar-brand {
+            --bs-table-color: #e5e7eb;
+            --bs-table-bg: transparent;
+            color: #e5e7eb;
+        }
+
+        .card {
+            background: rgba(15,23,42,.75);
+            backdrop-filter: blur(18px);
+            border-radius: 22px;
+            border: none;
+            color: #e5e7eb;
+            box-shadow: 0 30px 80px rgba(0,0,0,.6);
+        }
+
+        .card-header {
+            background: transparent;
+            border-bottom: 1px solid rgba(148,163,184,.15);
+        }
+
+        .nav-tabs .nav-link {
+            color: #c7d2fe;
+        }
+        .nav-tabs .nav-link.active {
+            background: transparent;
+            border-color: #6366f1;
+            color: #ffffff;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1, #3b82f6);
+            border: none;
+        }
+
+        .text-muted {
+            color: #94a3b8 !important;
+        }
+    </style>
 </head>
-<body class="bg-light">
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-3">
-    <div class="container-fluid">
-        <span class="navbar-brand">学生端 - 成绩查询</span>
-        <div class="navbar-text text-white">
-            学号：<%=stu.getStuNumber()%>　姓名：<%=stu.getStuName()%>　班级：<%=stu.getStuClass()%>
-        </div>
-    </div>
-</nav>
-<div class="container">
-    <div class="row g-3">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header bg-white">
-                    <ul class="nav nav-tabs card-header-tabs" id="scoreTabs" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="mid-tab" data-bs-toggle="tab"
-                                    data-bs-target="#mid" type="button" role="tab">
-                                期中成绩
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="final-tab" data-bs-toggle="tab"
-                                    data-bs-target="#final" type="button" role="tab">
-                                期末成绩
-                            </button>
-                        </li>
-                    </ul>
+
+<body>
+
+<!-- ===== 背景 ===== -->
+<canvas id="star-canvas"></canvas>
+<div id="cursor-glow"></div>
+<div class="background-grid"></div>
+
+<div class="main-wrapper">
+
+    <!-- ===== 导航栏 ===== -->
+    <nav class="navbar navbar-expand-lg mb-3">
+        <div class="container-fluid">
+            <span class="navbar-brand">学生端 - 成绩查询</span>
+
+            <div class="d-flex align-items-center gap-3">
+                <a href="<%=request.getContextPath()%>/student/semester_review.jsp"
+                   class="btn btn-light btn-sm">
+                    📊 学期回顾
+                </a>
+                <div class="navbar-text text-white d-none d-sm-block">
+                    学号：<%=stu.getStuNumber()%>　
+                    姓名：<%=stu.getStuName()%>　
+                    班级：<%=stu.getStuClass()%>
                 </div>
-                <div class="card-body tab-content">
-                    <div class="tab-pane fade show active" id="mid" role="tabpanel">
-                        <jsp:include page="scores_mid.jsp"/>
-                    </div>
-                    <div class="tab-pane fade" id="final" role="tabpanel">
-                        <jsp:include page="scores_final.jsp"/>
+                <a href="<%=request.getContextPath()%>/logout.jsp"
+                   class="btn btn-outline-light btn-sm px-3">
+                    退出登录
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== 主体 ===== -->
+    <div class="container">
+
+        <!-- 学期回顾卡片 -->
+        <div class="row g-3 mb-3">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="mb-1">📚 本学期学习回顾</h5>
+                            <p class="text-muted small mb-0">
+                                以全新的方式回顾你的学习轨迹
+                            </p>
+                        </div>
+                        <a href="<%=request.getContextPath()%>/student/semester_review.jsp"
+                           class="btn btn-primary btn-lg px-4">
+                            ✨ 进入回顾
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- 成绩 Tab -->
+        <div class="row g-3">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                            <li class="nav-item">
+                                <button class="nav-link active"
+                                        data-bs-toggle="tab"
+                                        data-bs-target="#mid"
+                                        type="button">
+                                    期中成绩
+                                </button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link"
+                                        data-bs-toggle="tab"
+                                        data-bs-target="#final"
+                                        type="button">
+                                    期末成绩
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="card-body tab-content">
+                        <div class="tab-pane fade show active" id="mid">
+                            <jsp:include page="scores_mid.jsp"/>
+                        </div>
+                        <div class="tab-pane fade" id="final">
+                            <jsp:include page="scores_final.jsp"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    /* ===== 光晕 ===== */
+    (function () {
+        const glow = document.getElementById('cursor-glow');
+        if (!glow) return;
+        document.addEventListener('mousemove', e => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
+    })();
+
+    /* ===== 星空 ===== */
+    (function () {
+        const canvas = document.getElementById('star-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        for (let i = 0; i < 120; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                r: Math.random() * 1.2 + .3,
+                s: Math.random() * .4 + .1
+            });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(255,255,255,.8)';
+            stars.forEach(star => {
+                star.y += star.s;
+                if (star.y > canvas.height) star.y = 0;
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    })();
+</script>
+
 </body>
 </html>
-
-

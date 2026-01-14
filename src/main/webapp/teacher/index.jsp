@@ -28,15 +28,147 @@
 <head>
     <meta charset="UTF-8">
     <title>教师后台 - 学生成绩管理系统</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* ================= 基础 ================= */
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background:
+                    radial-gradient(circle at 20% 20%, rgba(99,102,241,.25), transparent 40%),
+                    radial-gradient(circle at 80% 80%, rgba(14,165,233,.18), transparent 40%),
+                    linear-gradient(180deg, #020617, #020617);
+            color: #e5e7eb;
+            overflow-x: hidden;
+        }
+
+        /* ================= 背景层 ================= */
+        #star-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+        }
+        #cursor-glow {
+            position: fixed;
+            width: 420px;
+            height: 420px;
+            pointer-events: none;
+            background: radial-gradient(circle,
+            rgba(99,102,241,.18),
+            transparent 60%);
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+        .background-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 2;
+            background-image:
+                    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        /* ================= 内容层 ================= */
+        .main-wrapper {
+            position: relative;
+            z-index: 3;
+        }
+
+        /* ================= 组件样式 ================= */
+        .navbar {
+            background: rgba(2,6,23,.85) !important;
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(148,163,184,.15);
+        }
+
+        .navbar-brand {
+            color: #e5e7eb;
+        }
+
+        .card {
+            background: rgba(15,23,42,.75);
+            backdrop-filter: blur(18px);
+            border-radius: 22px;
+            border: none;
+            color: #e5e7eb;
+            box-shadow: 0 30px 80px rgba(0,0,0,.6);
+        }
+
+        .card-header {
+            background: transparent;
+            border-bottom: 1px solid rgba(148,163,184,.15);
+        }
+
+        .nav-tabs .nav-link,
+        .nav-pills .nav-link {
+            color: #c7d2fe;
+        }
+        .nav-tabs .nav-link.active,
+        .nav-pills .nav-link.active {
+            background: transparent;
+            border-color: #6366f1;
+            color: #ffffff;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1, #3b82f6);
+            border: none;
+        }
+
+        .text-muted {
+            color: #94a3b8 !important;
+        }
+
+        .table {
+            --bs-table-bg: transparent;
+            color: #e5e7eb;
+        }
+        .table thead {
+            background: rgba(30,41,59,.7);
+        }
+        .table tbody tr {
+            --bs-table-color: #e5e7eb;
+            --bs-table-bg: transparent;
+            color: #e5e7eb;
+        }
+        .table-hover tbody tr:hover {
+            background: rgba(99,102,241,.12);
+        }
+    </style>
 </head>
-<body class="bg-light">
-<nav class="navbar navbar-dark bg-primary mb-3">
+
+<body>
+
+<!-- ===== 背景 ===== -->
+<canvas id="star-canvas"></canvas>
+<div id="cursor-glow"></div>
+<div class="background-grid"></div>
+
+<div class="main-wrapper">
+
+<nav class="navbar navbar-expand-lg mb-3">
     <div class="container-fluid">
         <span class="navbar-brand">教师后台</span>
-        <span class="navbar-text text-white">工号：<%=teacher.getTeacherNumber()%>　姓名：<%=teacher.getTeacherName()%></span>
+        <div class="d-flex align-items-center gap-3">
+            <div class="navbar-text text-white d-none d-sm-block">
+                工号：<%=teacher.getTeacherNumber()%>　
+                姓名：<%=teacher.getTeacherName()%>
+            </div>
+            <a href="<%=request.getContextPath()%>/logout.jsp"
+               class="btn btn-outline-light btn-sm px-3">
+                退出登录
+            </a>
+        </div>
     </div>
 </nav>
+
 <div class="container">
     <ul class="nav nav-tabs mb-3" id="teacherTabs" role="tablist">
         <li class="nav-item" role="presentation">
@@ -335,8 +467,61 @@
             </div>
         </div>
     </div>
+    </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    /* ===== 光晕 ===== */
+    (function () {
+        const glow = document.getElementById('cursor-glow');
+        if (!glow) return;
+        document.addEventListener('mousemove', e => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
+    })();
+
+    /* ===== 星空 ===== */
+    (function () {
+        const canvas = document.getElementById('star-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        for (let i = 0; i < 120; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                r: Math.random() * 1.2 + .3,
+                s: Math.random() * .4 + .1
+            });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(255,255,255,.8)';
+            stars.forEach(star => {
+                star.y += star.s;
+                if (star.y > canvas.height) star.y = 0;
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    })();
+</script>
+
 </body>
 </html>
 

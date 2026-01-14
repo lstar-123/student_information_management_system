@@ -2,6 +2,24 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="com.lingxing.bean.Student" %>
 <%@ page import="com.lingxing.util.DBUtil" %>
+<style>
+    .table{
+        --bs-table-bg:transparent;
+        color:#e5e7eb;
+    }
+    .table thead{
+        background:rgba(30,41,59,.7);
+    }
+    .table tbody tr{
+        --bs-table-color: #e5e7eb;
+        --bs-table-bg: transparent;
+        color: #e5e7eb;
+    }
+    .table-hover tbody tr:hover{
+        background:rgba(99,102,241,.12);
+    }
+</style>
+
 <%
     Student stuObj = (Student) session.getAttribute("currentUser");
     if (stuObj == null) {

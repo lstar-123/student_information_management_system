@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
         if (role == null || username == null || password == null
                 || username.trim().isEmpty() || password.trim().isEmpty()) {
             request.setAttribute("error", "请输入账号和密码");
-            request.getRequestDispatcher("/login.jsp").forward(request, response);
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
             return;
         }
 
@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
                         response.sendRedirect(request.getContextPath() + "/admin/index.jsp");
                     } else {
                         request.setAttribute("error", "管理员账号或密码错误");
-                        request.getRequestDispatcher("/login.jsp").forward(request, response);
+                        request.getRequestDispatcher("/index.jsp").forward(request, response);
                     }
                     break;
                 }
@@ -63,7 +63,7 @@ public class LoginServlet extends HttpServlet {
                         response.sendRedirect(request.getContextPath() + "/teacher/index.jsp");
                     } else {
                         request.setAttribute("error", "教师账号或密码错误");
-                        request.getRequestDispatcher("/login.jsp").forward(request, response);
+                        request.getRequestDispatcher("/index.jsp").forward(request, response);
                     }
                     break;
                 }
@@ -76,13 +76,13 @@ public class LoginServlet extends HttpServlet {
                         response.sendRedirect(request.getContextPath() + "/student/index.jsp");
                     } else {
                         request.setAttribute("error", "学号或密码错误");
-                        request.getRequestDispatcher("/login.jsp").forward(request, response);
+                        request.getRequestDispatcher("/index.jsp").forward(request, response);
                     }
                     break;
                 }
                 default: {
                     request.setAttribute("error", "未知身份类型");
-                    request.getRequestDispatcher("/login.jsp").forward(request, response);
+                    request.getRequestDispatcher("/index.jsp").forward(request, response);
                 }
             }
         } catch (Exception e) {
