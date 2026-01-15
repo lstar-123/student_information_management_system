@@ -114,7 +114,13 @@
       border-radius: 14px;
       padding: 14px;
     }
+
+    .form-control::placeholder {
+      color: #94a3b8;
+    }
+
     .form-control:focus {
+      color: #e5e7eb;
       border-color: #6366f1;
       box-shadow: none;
       background: rgba(2,6,23,0.85);

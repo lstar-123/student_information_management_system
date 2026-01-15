@@ -141,6 +141,25 @@
         .table-hover tbody tr:hover {
             background: rgba(99,102,241,.12);
         }
+
+        /* ===== 学生列表 hover 渐变文字 ===== */
+        #students table tbody tr:hover td {
+            background: linear-gradient(135deg, #6366f1, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            transition: all .25s ease;
+        }
+
+        /* ===== 课程列表 hover 渐变文字 ===== */
+        #courses table tbody tr:hover td {
+            background: linear-gradient(135deg, #6366f1, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            transition: all .25s ease;
+        }
+
     </style>
 </head>
 
