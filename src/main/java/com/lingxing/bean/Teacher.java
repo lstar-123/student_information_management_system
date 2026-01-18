@@ -12,6 +12,8 @@ public class Teacher {
     private String teacherNumber;
     private String teacherName;
     private String password;
+    private String teacherClass;
+    private String teacherSubject;
 }
 
 

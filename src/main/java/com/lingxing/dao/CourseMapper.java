@@ -87,5 +87,11 @@ public interface CourseMapper {
      */
     @Select("SELECT course_id FROM tb_course WHERE course_name = #{courseName}")
     int getIdByName(@Param("courseName") String courseName);
+
+    /**
+     * 根据ID获取课程名称
+     */
+    @Select("SELECT course_name FROM tb_course WHERE course_id = #{courseId}")
+    String getNameById(@Param("courseId") int courseId);
 }
 

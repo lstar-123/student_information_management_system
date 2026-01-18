@@ -4,6 +4,7 @@
 <%@ page import="com.lingxing.bean.Student" %>
 <%@ page import="com.lingxing.dao.TeacherMapper" %>
 <%@ page import="com.lingxing.dao.StudentMapper" %>
+<%@ page import="com.lingxing.dao.CourseMapper" %>
 <%@ page import="com.lingxing.util.MyBatisUtil" %>
 <%@ page import="org.apache.ibatis.session.SqlSession" %>
 
@@ -17,11 +18,14 @@
 
     List<Teacher> teachers;
     List<Student> students;
+    List<CourseMapper.CourseItem> courses;
     try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
         TeacherMapper teacherMapper = sqlSession.getMapper(TeacherMapper.class);
         StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+        CourseMapper courseMapper = sqlSession.getMapper(CourseMapper.class);
         teachers = teacherMapper.findAll();
         students = studentMapper.findAll();
+        courses = courseMapper.findAll();
     }
 %>
 
@@ -206,6 +210,9 @@
                 <li class="nav-item">
                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#students">学生管理</button>
                 </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#courses">课程管理</button>
+                </li>
             </ul>
 
             <div class="tab-content">
@@ -217,11 +224,19 @@
                         <div class="card-body">
                             <form class="row g-2" method="post" action="<%=request.getContextPath()%>/admin/teacher">
                                 <input type="hidden" name="action" value="add">
-                                <div class="col-sm-6 col-md-4">
+                                <div class="col-sm-6 col-md-3">
                                     <label class="form-label">教师姓名</label>
                                     <input type="text" name="teacherName" class="form-control" required>
                                 </div>
-                                <div class="col-sm-12 col-md-4 align-self-end">
+                                <div class="col-sm-6 col-md-3">
+                                    <label class="form-label">所教班级</label>
+                                    <input type="text" name="teacherClass" class="form-control" placeholder="例如：2024级1班,2024级2班">
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <label class="form-label">所教学科</label>
+                                    <input type="text" name="teacherSubject" class="form-control" placeholder="例如：数学,英语">
+                                </div>
+                                <div class="col-sm-12 col-md-3 align-self-end">
                                     <button class="btn btn-primary">添加</button>
                                 </div>
                                 <div class="col-12 text-muted small">默认密码：12345678，工号自动生成。</div>
@@ -230,12 +245,19 @@
                     </div>
 
                     <div class="card">
-                        <div class="card-header">教师列表</div>
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <span>教师列表</span>
+                            <div class="input-group" style="width: 360px;">
+                                <input type="text" id="teacherSearch" class="form-control" placeholder="搜索工号或姓名..." style="background: rgba(2,6,23,.65); border: 1px solid rgba(148,163,184,.25); color: #e5e7eb;">
+                                <button class="btn btn-outline-info" type="button" onclick="filterTeachers('exact')">查询</button>
+                                <button class="btn btn-outline-secondary" type="button" onclick="clearTeacherSearch()">清空</button>
+                            </div>
+                        </div>
                         <div class="card-body table-responsive">
                             <table class="table table-hover align-middle">
                                 <thead>
                                 <tr>
-                                    <th>工号</th><th>姓名</th><th>密码</th><th style="width:220px;">操作</th>
+                                    <th>工号</th><th>姓名</th><th>所教班级</th><th>所教学科</th><th>密码</th><th style="width:220px;">操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -246,17 +268,25 @@
                                         <form class="row g-2" method="post" action="<%=request.getContextPath()%>/admin/teacher">
                                             <input type="hidden" name="action" value="edit">
                                             <input type="hidden" name="teacherId" value="<%=t.getTeacherId()%>">
-                                            <div class="col-md-5">
+                                            <div class="col-md-12 mb-2">
                                                 <input type="text" name="teacherName" class="form-control form-control-sm" value="<%=t.getTeacherName()%>">
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-12 mb-2">
+                                                <input type="text" name="teacherClass" class="form-control form-control-sm" value="<%=t.getTeacherClass() != null ? t.getTeacherClass() : ""%>" placeholder="所教班级">
+                                            </div>
+                                            <div class="col-md-12 mb-2">
+                                                <input type="text" name="teacherSubject" class="form-control form-control-sm" value="<%=t.getTeacherSubject() != null ? t.getTeacherSubject() : ""%>" placeholder="所教学科">
+                                            </div>
+                                            <div class="col-md-12 mb-2">
                                                 <input type="text" name="password" class="form-control form-control-sm" value="<%=t.getPassword()%>">
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-12">
                                                 <button class="btn btn-sm btn-success">保存</button>
                                             </div>
                                         </form>
                                     </td>
+                                    <td><%=t.getTeacherClass() != null ? t.getTeacherClass() : "-" %></td>
+                                    <td><%=t.getTeacherSubject() != null ? t.getTeacherSubject() : "-" %></td>
                                     <td><%=t.getPassword()%></td>
                                     <td>
                                         <form method="post" action="<%=request.getContextPath()%>/admin/teacher">
@@ -287,7 +317,7 @@
                                 <div class="col-sm-4 col-md-3">
                                     <label class="form-label">年份</label>
                                     <select name="year" class="form-select">
-                                        <option>2024</option><option>2023</option><option>2022</option>
+                                        <option>2025</option><option>2024</option><option>2023</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-4 col-md-3">
@@ -305,7 +335,14 @@
                     </div>
 
                     <div class="card">
-                        <div class="card-header">学生列表</div>
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <span>学生列表</span>
+                            <div class="input-group" style="width: 360px;">
+                                <input type="text" id="studentSearch" class="form-control" placeholder="搜索学号或姓名..." style="background: rgba(2,6,23,.65); border: 1px solid rgba(148,163,184,.25); color: #e5e7eb;">
+                                <button class="btn btn-outline-info" type="button" onclick="filterStudents('exact')">查询</button>
+                                <button class="btn btn-outline-secondary" type="button" onclick="clearStudentSearch()">清空</button>
+                            </div>
+                        </div>
                         <div class="card-body table-responsive">
                             <table class="table table-hover align-middle">
                                 <thead>
@@ -326,12 +363,43 @@
                                             </div>
                                             <div class="col-lg-3">
                                                 <select name="year" class="form-select form-select-sm">
-                                                    <option>2024</option><option>2023</option><option>2022</option>
+                                                    <%
+                                                    // 从学生班级信息中提取年份
+                                                    String stuClass = s.getStuClass();
+                                                    String currentYear = "2025"; // 默认值
+                                                    if (stuClass != null && stuClass.contains("级")) {
+                                                        int gradeIndex = stuClass.indexOf("级");
+                                                        if (gradeIndex >= 4) { // 确保有足够的字符
+                                                            currentYear = stuClass.substring(0, gradeIndex);
+                                                        }
+                                                    }
+                                                    %>
+                                                    <option <%= "2025".equals(currentYear) ? "selected" : "" %>>2025</option>
+                                                    <option <%= "2024".equals(currentYear) ? "selected" : "" %>>2024</option>
+                                                    <option <%= "2023".equals(currentYear) ? "selected" : "" %>>2023</option>
                                                 </select>
                                             </div>
                                             <div class="col-lg-2">
                                                 <select name="classNum" class="form-select form-select-sm">
-                                                    <% for(int i=1;i<=12;i++){ %><option><%=i%></option><% } %>
+                                                    <%
+                                                    // 从学生班级信息中提取班级号（重用之前声明的stuClass变量）
+                                                    String currentClassNum = "1"; // 默认值
+                                                    if (stuClass != null && stuClass.contains("级") && stuClass.contains("班")) {
+                                                        int gradeIndex = stuClass.indexOf("级");
+                                                        int classIndex = stuClass.indexOf("班");
+                                                        if (gradeIndex >= 0 && classIndex > gradeIndex) {
+                                                            String classPart = stuClass.substring(gradeIndex + 1, classIndex);
+                                                            // 移除可能的非数字字符
+                                                            currentClassNum = classPart.replaceAll("[^0-9]", "");
+                                                            if (currentClassNum.isEmpty()) {
+                                                                currentClassNum = "1";
+                                                            }
+                                                        }
+                                                    }
+                                                    for(int i=1;i<=12;i++){
+                                                    %>
+                                                    <option <%= String.valueOf(i).equals(currentClassNum) ? "selected" : "" %>><%=i%></option>
+                                                    <% } %>
                                                 </select>
                                             </div>
                                             <div class="col-lg-2">
@@ -357,6 +425,65 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- 课程管理 -->
+                <div class="tab-pane fade" id="courses">
+                    <div class="card mb-3">
+                        <div class="card-header">添加课程</div>
+                        <div class="card-body">
+                            <form class="row g-2" method="post" action="<%=request.getContextPath()%>/admin/course">
+                                <input type="hidden" name="action" value="add">
+                                <div class="col-sm-6 col-md-4">
+                                    <label class="form-label">课程名称</label>
+                                    <input type="text" name="courseName" class="form-control" required>
+                                </div>
+                                <div class="col-sm-12 col-md-3 align-self-end">
+                                    <button class="btn btn-primary">添加</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">课程列表</div>
+                        <div class="card-body table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>课程名称</th>
+                                    <th style="width:180px;">操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <% for (CourseMapper.CourseItem c : courses) { %>
+                                <tr>
+                                    <td><%=c.getId()%></td>
+                                    <td>
+                                        <form class="row g-2" method="post" action="<%=request.getContextPath()%>/admin/course">
+                                            <input type="hidden" name="action" value="edit">
+                                            <input type="hidden" name="courseId" value="<%=c.getId()%>">
+                                            <div class="col-md-7">
+                                                <input type="text" name="courseName" class="form-control form-control-sm" value="<%=c.getName()%>" required>
+                                            </div>
+                                            <div class="col-md-5 d-flex gap-1">
+                                                <button class="btn btn-sm btn-success">保存</button>
+                                            </div>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form method="post" action="<%=request.getContextPath()%>/admin/course" onsubmit="return confirm('删除该课程及其成绩？');">
+                                            <input type="hidden" name="action" value="delete">
+                                            <input type="hidden" name="courseId" value="<%=c.getId()%>">
+                                            <button class="btn btn-sm btn-outline-danger">删除</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -368,6 +495,67 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        /* ===== 搜索功能 ===== */
+        function filterTeachers(mode) {
+            const searchText = document.getElementById('teacherSearch').value.toLowerCase().trim();
+            const tableRows = document.querySelectorAll('#teachers table tbody tr');
+
+            tableRows.forEach(row => {
+                const teacherNumber = row.cells[0].textContent.toLowerCase();
+                // 从表单输入框中获取教师姓名
+                const teacherNameInput = row.cells[1].querySelector('input[name="teacherName"]');
+                const teacherName = teacherNameInput ? teacherNameInput.value.toLowerCase() : '';
+                let isVisible = true;
+                if (searchText) {
+                    if (mode === 'exact') {
+                        isVisible = (teacherNumber === searchText) || (teacherName === searchText);
+                    } else {
+                        isVisible = teacherNumber.includes(searchText) || teacherName.includes(searchText);
+                    }
+                }
+                row.style.display = isVisible ? '' : 'none';
+            });
+        }
+
+        function filterStudents(mode) {
+            const searchText = document.getElementById('studentSearch').value.toLowerCase().trim();
+            const tableRows = document.querySelectorAll('#students table tbody tr');
+
+            tableRows.forEach(row => {
+                const studentNumber = row.cells[0].textContent.toLowerCase();
+                // 从表单输入框中获取学生姓名
+                const studentNameInput = row.cells[1].querySelector('input[name="stuName"]');
+                const studentName = studentNameInput ? studentNameInput.value.toLowerCase() : '';
+                let isVisible = true;
+                if (searchText) {
+                    if (mode === 'exact') {
+                        isVisible = (studentNumber === searchText) || (studentName === searchText);
+                    } else {
+                        isVisible = studentNumber.includes(searchText) || studentName.includes(searchText);
+                    }
+                }
+                row.style.display = isVisible ? '' : 'none';
+            });
+        }
+
+        function clearTeacherSearch() {
+            document.getElementById('teacherSearch').value = '';
+            filterTeachers();
+        }
+
+        function clearStudentSearch() {
+            document.getElementById('studentSearch').value = '';
+            filterStudents();
+        }
+
+        // 绑定搜索事件
+        document.getElementById('teacherSearch').addEventListener('input', function () {
+            filterTeachers('fuzzy');
+        });
+        document.getElementById('studentSearch').addEventListener('input', function () {
+            filterStudents('fuzzy');
+        });
+
         /* ===== 星空动画（仅视觉） ===== */
         const canvas = document.getElementById('star-canvas');
         const ctx = canvas.getContext('2d');

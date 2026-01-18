@@ -35,22 +35,14 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>teacherStudentServlet</servlet-name>
-        <servlet-class>com.lingxing.servlet.TeacherStudentServlet</servlet-class>
+        <servlet-name>adminCourseServlet</servlet-name>
+        <servlet-class>com.lingxing.servlet.AdminCourseServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>teacherStudentServlet</servlet-name>
-        <url-pattern>/teacher/student</url-pattern>
+        <servlet-name>adminCourseServlet</servlet-name>
+        <url-pattern>/admin/course</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>teacherCourseServlet</servlet-name>
-        <servlet-class>com.lingxing.servlet.TeacherCourseServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>teacherCourseServlet</servlet-name>
-        <url-pattern>/teacher/course</url-pattern>
-    </servlet-mapping>
 
     <servlet>
         <servlet-name>teacherScoreServlet</servlet-name>

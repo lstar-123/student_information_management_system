@@ -1,10 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ page import="java.util.*" %>
+<%@ page import="java.sql.*" %>
 <%@ page import="com.lingxing.bean.Teacher" %>
 <%@ page import="com.lingxing.bean.Student" %>
-<%@ page import="com.lingxing.dao.StudentMapper" %>
 <%@ page import="com.lingxing.dao.CourseMapper" %>
+<%@ page import="com.lingxing.dao.StudentMapper" %>
 <%@ page import="com.lingxing.util.MyBatisUtil" %>
+<%@ page import="com.lingxing.util.DBUtil" %>
 <%@ page import="org.apache.ibatis.session.SqlSession" %>
 <%
     Object user = session.getAttribute("currentUser");
@@ -14,13 +16,68 @@
         return;
     }
     Teacher teacher = (Teacher) user;
-    List<Student> students;
-    List<CourseMapper.CourseItem> courses;
+    List<Student> allStudents;
+    List<CourseMapper.CourseItem> allCourses;
+    List<Student> allowedStudents = new ArrayList<>();
+    List<CourseMapper.CourseItem> allowedCourses = new ArrayList<>();
+    Set<String> allowedClassSet = new HashSet<>();
+
     try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
         StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
         CourseMapper courseMapper = sqlSession.getMapper(CourseMapper.class);
-        students = studentMapper.findAll();
-        courses = courseMapper.findAll();
+        allStudents = studentMapper.findAll();
+        allCourses = courseMapper.findAll();
+
+        // 根据教师权限过滤学生和课程
+        String teacherClass = teacher.getTeacherClass();
+        String teacherSubject = teacher.getTeacherSubject();
+
+        if (teacherClass != null && !teacherClass.trim().isEmpty()) {
+            String[] classTokens = teacherClass.split(",");
+            for (String token : classTokens) {
+                String trimmed = token.trim();
+                if (trimmed.contains("~") && trimmed.contains("级") && trimmed.contains("班")) {
+                    int gradeIndex = trimmed.indexOf("级");
+                    String yearPart = trimmed.substring(0, gradeIndex);
+                    String classPart = trimmed.substring(gradeIndex + 1, trimmed.length() - 1);
+                    String[] yearRange = yearPart.split("~");
+                    String[] classRange = classPart.split("~");
+                    if (yearRange.length == 2 && classRange.length == 2) {
+                        int startYear = Integer.parseInt(yearRange[0]);
+                        int endYear = Integer.parseInt(yearRange[1]);
+                        int startClass = Integer.parseInt(classRange[0]);
+                        int endClass = Integer.parseInt(classRange[1]);
+                        for (int y = startYear; y <= endYear; y++) {
+                            for (int c = startClass; c <= endClass; c++) {
+                                allowedClassSet.add(y + "级" + c + "班");
+                            }
+                        }
+                    } else {
+                        allowedClassSet.add(trimmed);
+                    }
+                } else if (!trimmed.isEmpty()) {
+                    allowedClassSet.add(trimmed);
+                }
+            }
+
+            for (Student student : allStudents) {
+                if (allowedClassSet.contains(student.getStuClass())) {
+                    allowedStudents.add(student);
+                }
+            }
+        }
+
+        if (teacherSubject != null && !teacherSubject.trim().isEmpty()) {
+            String[] allowedSubjects = teacherSubject.split(",");
+            for (CourseMapper.CourseItem course : allCourses) {
+                for (String allowedSubject : allowedSubjects) {
+                    if (allowedSubject.trim().equals(course.getName())) {
+                        allowedCourses.add(course);
+                        break;
+                    }
+                }
+            }
+        }
     }
 %>
 <!DOCTYPE html>
@@ -142,17 +199,8 @@
             background: rgba(99,102,241,.12);
         }
 
-        /* ===== 学生列表 hover 渐变文字 ===== */
-        #students table tbody tr:hover td {
-            background: linear-gradient(135deg, #6366f1, #3b82f6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            transition: all .25s ease;
-        }
-
-        /* ===== 课程列表 hover 渐变文字 ===== */
-        #courses table tbody tr:hover td {
+        /* ===== 成绩列表 hover 渐变文字 ===== */
+        #scores table tbody tr:hover td {
             background: linear-gradient(135deg, #6366f1, #3b82f6);
             -webkit-background-clip: text;
             background-clip: text;
@@ -188,177 +236,24 @@
     </div>
 </nav>
 
-<div class="container">
-    <ul class="nav nav-tabs mb-3" id="teacherTabs" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="students-tab" data-bs-toggle="tab" data-bs-target="#students" type="button">学生管理</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses" type="button">课程管理</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="scores-tab" data-bs-toggle="tab" data-bs-target="#scores" type="button">成绩管理</button>
-        </li>
-    </ul>
+        <div class="container">
+            <!-- 权限信息提示 -->
+            <% if (teacher.getTeacherClass() == null || teacher.getTeacherClass().trim().isEmpty() ||
+                   teacher.getTeacherSubject() == null || teacher.getTeacherSubject().trim().isEmpty()) { %>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>权限设置提醒：</strong>您的账号尚未设置负责班级或科目，请联系管理员进行设置。
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <% } %>
+
+            <ul class="nav nav-tabs mb-3" id="teacherTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="scores-tab" data-bs-toggle="tab" data-bs-target="#scores" type="button">成绩管理</button>
+                </li>
+            </ul>
     <div class="tab-content">
-        <!-- 学生管理 -->
-        <div class="tab-pane fade show active" id="students" role="tabpanel">
-            <div class="card mb-3">
-                <div class="card-header">添加学生</div>
-                <div class="card-body">
-                    <form class="row g-2" method="post" action="<%=request.getContextPath()%>/teacher/student">
-                        <input type="hidden" name="action" value="add">
-                        <div class="col-sm-4 col-md-3">
-                            <label class="form-label">姓名</label>
-                            <input type="text" name="stuName" class="form-control" required>
-                        </div>
-                        <div class="col-sm-4 col-md-3">
-                            <label class="form-label">年份</label>
-                            <select name="year" class="form-select" required>
-                                <option>2024</option>
-                                <option>2023</option>
-                                <option>2022</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-4 col-md-3">
-                            <label class="form-label">班级</label>
-                            <select name="classNum" class="form-select" required>
-                                <% for (int i=1;i<=12;i++){ %>
-                                <option value="<%=i%>"><%=i%></option>
-                                <% } %>
-                            </select>
-                        </div>
-                        <div class="col-sm-12 col-md-3 align-self-end">
-                            <button class="btn btn-primary">添加</button>
-                        </div>
-                        <div class="col-12 text-muted small">默认密码：12345678，学号自动生成。</div>
-                    </form>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">学生列表</div>
-                <div class="card-body table-responsive">
-                    <table class="table table-hover align-middle">
-                        <thead class="table-primary">
-                        <tr>
-                            <th>学号</th>
-                            <th>姓名/班级/密码</th>
-                            <th style="width:180px;">操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <% for (Student s : students) { %>
-                        <tr>
-                            <td><%=s.getStuNumber()%></td>
-                            <td>
-                                <form class="row g-2 align-items-center" method="post" action="<%=request.getContextPath()%>/teacher/student">
-                                    <input type="hidden" name="action" value="edit">
-                                    <input type="hidden" name="stuId" value="<%=s.getStuId()%>">
-                                    <div class="col-lg-3">
-                                        <input type="text" name="stuName" class="form-control form-control-sm" value="<%=s.getStuName()%>" required>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <select name="year" class="form-select form-select-sm">
-                                            <option <%=s.getStuClass().startsWith("2024")?"selected":""%>>2024</option>
-                                            <option <%=s.getStuClass().startsWith("2023")?"selected":""%>>2023</option>
-                                            <option <%=s.getStuClass().startsWith("2022")?"selected":""%>>2022</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <select name="classNum" class="form-select form-select-sm">
-                                            <% for (int i=1;i<=12;i++){ %>
-                                            <option value="<%=i%>" <%=s.getStuClass().contains("级"+i+"班")?"selected":""%>><%=i%></option>
-                                            <% } %>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <input type="text" name="password" class="form-control form-control-sm" value="<%=s.getPassword()%>">
-                                    </div>
-                                    <div class="col-lg-2 d-flex gap-1">
-                                        <div class="form-check form-check-sm">
-                                            <input class="form-check-input" type="checkbox" name="resetPassword" id="treset<%=s.getStuId()%>">
-                                            <label class="form-check-label small" for="treset<%=s.getStuId()%>">重置</label>
-                                        </div>
-                                        <button class="btn btn-sm btn-success">保存</button>
-                                    </div>
-                                </form>
-                            </td>
-                            <td>
-                                <form method="post" action="<%=request.getContextPath()%>/teacher/student" onsubmit="return confirm('删除该学生及其成绩？');">
-                                    <input type="hidden" name="action" value="delete">
-                                    <input type="hidden" name="stuId" value="<%=s.getStuId()%>">
-                                    <button class="btn btn-sm btn-outline-danger">删除</button>
-                                </form>
-                            </td>
-                        </tr>
-                        <% } %>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- 课程管理 -->
-        <div class="tab-pane fade" id="courses" role="tabpanel">
-            <div class="card mb-3">
-                <div class="card-header">添加课程</div>
-                <div class="card-body">
-                    <form class="row g-2" method="post" action="<%=request.getContextPath()%>/teacher/course">
-                        <input type="hidden" name="action" value="add">
-                        <div class="col-sm-6 col-md-4">
-                            <label class="form-label">课程名称</label>
-                            <input type="text" name="courseName" class="form-control" required>
-                        </div>
-                        <div class="col-sm-12 col-md-3 align-self-end">
-                            <button class="btn btn-primary">添加</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">课程列表</div>
-                <div class="card-body table-responsive">
-                    <table class="table table-hover align-middle">
-                        <thead class="table-primary">
-                        <tr>
-                            <th>ID</th>
-                            <th>课程名称</th>
-                            <th style="width:180px;">操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <% for (CourseMapper.CourseItem c : courses) { %>
-                        <tr>
-                            <td><%=c.getId()%></td>
-                            <td>
-                                <form class="row g-2" method="post" action="<%=request.getContextPath()%>/teacher/course">
-                                    <input type="hidden" name="action" value="edit">
-                                    <input type="hidden" name="courseId" value="<%=c.getId()%>">
-                                    <div class="col-md-7">
-                                        <input type="text" name="courseName" class="form-control form-control-sm" value="<%=c.getName()%>" required>
-                                    </div>
-                                    <div class="col-md-5 d-flex gap-1">
-                                        <button class="btn btn-sm btn-success">保存</button>
-                                    </div>
-                                </form>
-                            </td>
-                            <td>
-                                <form method="post" action="<%=request.getContextPath()%>/teacher/course" onsubmit="return confirm('删除该课程及其成绩？');">
-                                    <input type="hidden" name="action" value="delete">
-                                    <input type="hidden" name="courseId" value="<%=c.getId()%>">
-                                    <button class="btn btn-sm btn-outline-danger">删除</button>
-                                </form>
-                            </td>
-                        </tr>
-                        <% } %>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
         <!-- 成绩管理 -->
-        <div class="tab-pane fade" id="scores" role="tabpanel">
+        <div class="tab-pane fade show active" id="scores" role="tabpanel">
             <div class="card mb-3">
                 <div class="card-header">添加成绩</div>
                 <div class="card-body">
@@ -367,16 +262,24 @@
                         <div class="col-md-3">
                             <label class="form-label">学生姓名</label>
                             <select name="stuName" class="form-select" required>
-                                <% for (Student s : students) { %>
+                                <% if (allowedStudents.isEmpty()) { %>
+                                <option disabled>暂无权限管理的学生</option>
+                                <% } else { %>
+                                <% for (Student s : allowedStudents) { %>
                                 <option><%=s.getStuName()%></option>
+                                <% } %>
                                 <% } %>
                             </select>
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">课程</label>
                             <select name="courseName" class="form-select" required>
-                                <% for (CourseMapper.CourseItem c : courses) { %>
+                                <% if (allowedCourses.isEmpty()) { %>
+                                <option disabled>暂无权限管理的课程</option>
+                                <% } else { %>
+                                <% for (CourseMapper.CourseItem c : allowedCourses) { %>
                                 <option><%=c.getName()%></option>
+                                <% } %>
                                 <% } %>
                             </select>
                         </div>
@@ -405,16 +308,24 @@
                         <div class="col-md-3">
                             <label class="form-label">学生姓名</label>
                             <select name="stuName" class="form-select" required>
-                                <% for (Student s : students) { %>
+                                <% if (allowedStudents.isEmpty()) { %>
+                                <option disabled>暂无权限管理的学生</option>
+                                <% } else { %>
+                                <% for (Student s : allowedStudents) { %>
                                 <option><%=s.getStuName()%></option>
+                                <% } %>
                                 <% } %>
                             </select>
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">课程</label>
                             <select name="courseName" class="form-select" required>
-                                <% for (CourseMapper.CourseItem c : courses) { %>
+                                <% if (allowedCourses.isEmpty()) { %>
+                                <option disabled>暂无权限管理的课程</option>
+                                <% } else { %>
+                                <% for (CourseMapper.CourseItem c : allowedCourses) { %>
                                 <option><%=c.getName()%></option>
+                                <% } %>
                                 <% } %>
                             </select>
                         </div>
@@ -437,15 +348,23 @@
                         <input type="hidden" name="action" value="delete">
                         <div class="col-md-3">
                             <select name="stuName" class="form-select" required>
-                                <% for (Student s : students) { %>
+                                <% if (allowedStudents.isEmpty()) { %>
+                                <option disabled>暂无权限管理的学生</option>
+                                <% } else { %>
+                                <% for (Student s : allowedStudents) { %>
                                 <option><%=s.getStuName()%></option>
+                                <% } %>
                                 <% } %>
                             </select>
                         </div>
                         <div class="col-md-3">
                             <select name="courseName" class="form-select" required>
-                                <% for (CourseMapper.CourseItem c : courses) { %>
+                                <% if (allowedCourses.isEmpty()) { %>
+                                <option disabled>暂无权限管理的课程</option>
+                                <% } else { %>
+                                <% for (CourseMapper.CourseItem c : allowedCourses) { %>
                                 <option><%=c.getName()%></option>
+                                <% } %>
                                 <% } %>
                             </select>
                         </div>
@@ -461,29 +380,108 @@
                     </form>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    成绩总览
-                </div>
+
+            <!-- 成绩列表 -->
+            <div class="card mb-3">
+                <div class="card-header">成绩列表</div>
                 <div class="card-body">
-                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="pills-mid-tab" data-bs-toggle="pill" data-bs-target="#pills-mid" type="button">期中</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-final-tab" data-bs-toggle="pill" data-bs-target="#pills-final" type="button">期末</button>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane fade show active" id="pills-mid" role="tabpanel">
-                            <jsp:include page="scores_mid.jsp"/>
-                        </div>
-                        <div class="tab-pane fade" id="pills-final" role="tabpanel">
-                            <jsp:include page="scores_final.jsp"/>
-                        </div>
+                    <%
+                    if (allowedClassSet.isEmpty()) {
+                    %>
+                    <div class="alert alert-warning">您尚未设置负责班级，请联系管理员设置。</div>
+                    <%
+                    } else if (allowedCourses.isEmpty()) {
+                    %>
+                    <div class="alert alert-warning">您尚未设置负责科目，请联系管理员设置。</div>
+                    <%
+                    } else {
+                        // 查询教师负责班级的学生成绩
+                        try {
+                            Connection conn = DBUtil.getConnection();
+
+                            // 构建班级条件
+                            StringBuilder classCondition = new StringBuilder();
+                            int classIndex = 0;
+                            for (String cls : allowedClassSet) {
+                                if (classIndex++ > 0) classCondition.append(",");
+                                classCondition.append("'").append(cls).append("'");
+                            }
+
+                            // 构建动态列：每个课程对应期中/期末两列
+                            StringBuilder sql = new StringBuilder("SELECT st.stu_number, st.stu_name, st.stu_class");
+                            for (CourseMapper.CourseItem course : allowedCourses) {
+                                sql.append(", MAX(CASE WHEN s.course_id = ").append(course.getId())
+                                   .append(" AND s.exam_type = '期中' THEN s.score END) AS `")
+                                   .append(course.getName()).append("_期中`");
+                                sql.append(", MAX(CASE WHEN s.course_id = ").append(course.getId())
+                                   .append(" AND s.exam_type = '期末' THEN s.score END) AS `")
+                                   .append(course.getName()).append("_期末`");
+                            }
+                            sql.append(" FROM tb_student st ");
+                            sql.append(" LEFT JOIN tb_score s ON st.stu_id = s.stu_id ");
+                            sql.append(" WHERE st.stu_class IN (").append(classCondition.toString()).append(") ");
+                            sql.append(" GROUP BY st.stu_id, st.stu_number, st.stu_name, st.stu_class ");
+                            sql.append(" ORDER BY st.stu_class, st.stu_name");
+
+                            PreparedStatement ps = conn.prepareStatement(sql.toString());
+                            ResultSet rs = ps.executeQuery();
+
+                            boolean hasData = false;
+                    %>
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th>学号</th>
+                                    <th>姓名</th>
+                                    <th>班级</th>
+                                    <% for (CourseMapper.CourseItem course : allowedCourses) { %>
+                                    <th><%=course.getName()%>-期中</th>
+                                    <th><%=course.getName()%>-期末</th>
+                                    <% } %>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <%
+                            while (rs.next()) {
+                                hasData = true;
+                            %>
+                                <tr>
+                                    <td><%=rs.getString("stu_number")%></td>
+                                    <td><%=rs.getString("stu_name")%></td>
+                                    <td><%=rs.getString("stu_class")%></td>
+                                    <% for (CourseMapper.CourseItem course : allowedCourses) { %>
+                                    <td><%=rs.getObject(course.getName() + "_期中") == null ? "-" : rs.getObject(course.getName() + "_期中")%></td>
+                                    <td><%=rs.getObject(course.getName() + "_期末") == null ? "-" : rs.getObject(course.getName() + "_期末")%></td>
+                                    <% } %>
+                                </tr>
+                            <%
+                            }
+                            if (!hasData) {
+                            %>
+                                <tr>
+                                    <td colspan="<%= 3 + (allowedCourses.size() * 2) %>" class="text-center text-muted">暂无成绩记录</td>
+                                </tr>
+                            <%
+                            }
+                            %>
+                            </tbody>
+                        </table>
                     </div>
+                    <%
+                            rs.close();
+                            ps.close();
+                            conn.close();
+                        } catch (Exception e) {
+                    %>
+                    <div class="alert alert-danger">加载成绩列表失败：<%=e.getMessage()%></div>
+                    <%
+                        }
+                    }
+                    %>
                 </div>
             </div>
+
         </div>
     </div>
     </div>
@@ -492,16 +490,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    /* ===== 光晕 ===== */
-    (function () {
-        const glow = document.getElementById('cursor-glow');
-        if (!glow) return;
-        document.addEventListener('mousemove', e => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
-    })();
-
     /* ===== 星空 ===== */
     (function () {
         const canvas = document.getElementById('star-canvas');
@@ -538,6 +526,16 @@
             requestAnimationFrame(animate);
         }
         animate();
+    })();
+
+    /* 光晕 */
+    (function () {
+        const glow = document.getElementById('cursor-glow');
+        if (!glow) return;
+        document.addEventListener('mousemove', e => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
     })();
 </script>
 

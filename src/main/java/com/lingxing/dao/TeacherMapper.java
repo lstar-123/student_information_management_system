@@ -32,14 +32,14 @@ public interface TeacherMapper {
     /**
      * 添加教师
      */
-    @Insert("INSERT INTO tb_teacher (teacher_number, teacher_name, teacher_password) VALUES (#{teacherNumber}, #{teacherName}, #{password})")
+    @Insert("INSERT INTO tb_teacher (teacher_number, teacher_name, teacher_password, teacher_class, teacher_subject) VALUES (#{teacherNumber}, #{teacherName}, #{password}, #{teacherClass}, #{teacherSubject})")
     @Options(useGeneratedKeys = true, keyProperty = "teacherId", keyColumn = "teacher_id")
     int insert(Teacher teacher);
 
     /**
      * 更新教师信息
      */
-    @Update("UPDATE tb_teacher SET teacher_name = #{teacherName}, teacher_password = #{password} WHERE teacher_id = #{teacherId}")
+    @Update("UPDATE tb_teacher SET teacher_name = #{teacherName}, teacher_password = #{password}, teacher_class = #{teacherClass}, teacher_subject = #{teacherSubject} WHERE teacher_id = #{teacherId}")
     int update(Teacher teacher);
 
     /**

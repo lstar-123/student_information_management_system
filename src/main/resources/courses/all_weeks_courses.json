@@ -1,0 +1,1567 @@
+{
+  "01": [],
+  "02": [
+    {
+      "weekday": "Monday",
+      "date": "2025-09-22",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-09-24",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "软件建模技术",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2025-09-25",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "形势与政策（3）",
+      "classroom": "第一综合实训楼233"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-09-22",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-09-26",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Web应用安全与防护",
+      "classroom": "1-510 数据结构实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-09-22",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "实用语文",
+      "classroom": "综合教学楼阶4"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-09-23",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2025-09-25",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "大学体育（3）",
+      "classroom": "未知教室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-09-22",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "数据结构",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-09-23",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    }
+  ],
+  "03": [
+    {
+      "weekday": "Monday",
+      "date": "2025-09-29",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-09-30",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "软件测试",
+      "classroom": "1-501 UI设计实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-09-29",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-09-30",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "软件测试",
+      "classroom": "1-501 UI设计实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-09-29",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "实用语文",
+      "classroom": "综合教学楼阶4"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-09-30",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-09-29",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "数据结构",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-09-30",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    }
+  ],
+  "04": [
+    {
+      "weekday": "Tuesday",
+      "date": "2025-10-07",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "软件测试",
+      "classroom": "1-501 UI设计实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-10-08",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "软件建模技术",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2025-10-09",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "形势与政策（3）",
+      "classroom": "第一综合实训楼233"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-10-07",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "软件测试",
+      "classroom": "1-501 UI设计实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-10-10",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Web应用安全与防护",
+      "classroom": "1-510 数据结构实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-10-07",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2025-10-09",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "大学体育（3）",
+      "classroom": "未知教室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-10-10",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-10-07",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-10-10",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    }
+  ],
+  "05": [
+    {
+      "weekday": "Monday",
+      "date": "2025-10-13",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-10-14",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "软件测试",
+      "classroom": "1-501 UI设计实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-10-15",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "软件建模技术",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2025-10-16",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "形势与政策（3）",
+      "classroom": "第一综合实训楼233"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-10-13",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-10-14",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "软件测试",
+      "classroom": "1-501 UI设计实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-10-15",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Web应用安全与防护",
+      "classroom": "1-508 区块链技术综合实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-10-17",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Web应用安全与防护",
+      "classroom": "1-510 数据结构实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-10-13",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "实用语文",
+      "classroom": "综合教学楼阶4"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-10-14",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2025-10-16",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "大学体育（3）",
+      "classroom": "未知教室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-10-17",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-10-13",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "数据结构",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-10-14",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2025-10-16",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "形势与政策（3）",
+      "classroom": "第一综合实训楼233"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-10-17",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-10-14",
+      "section": "第五大节 (09,10小节) 19:00-20:40",
+      "name": "软件建模技术",
+      "classroom": "1-306 虚拟化技术与应用实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-10-15",
+      "section": "第五大节 (09,10小节) 19:00-20:40",
+      "name": "软件测试",
+      "classroom": "未知教室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-10-15",
+      "section": "第六大节 (11,12小节) 20:45-22:20",
+      "name": "软件测试",
+      "classroom": "未知教室"
+    }
+  ],
+  "06": [
+    {
+      "weekday": "Monday",
+      "date": "2025-10-20",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-10-21",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "软件测试",
+      "classroom": "1-501 UI设计实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-10-22",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "软件建模技术",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-10-20",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-10-21",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "软件测试",
+      "classroom": "1-501 UI设计实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-10-22",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "大学体育（3）",
+      "classroom": "未知教室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-10-24",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Web应用安全与防护",
+      "classroom": "1-510 数据结构实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-10-20",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "实用语文",
+      "classroom": "综合教学楼阶4"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-10-21",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2025-10-23",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "大学体育（3）",
+      "classroom": "未知教室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-10-24",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-10-20",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "数据结构",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-10-21",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-10-24",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    }
+  ],
+  "07": [
+    {
+      "weekday": "Monday",
+      "date": "2025-10-27",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-10-28",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "软件测试",
+      "classroom": "1-501 UI设计实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-10-29",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "软件建模技术",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-10-27",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-10-28",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "软件测试",
+      "classroom": "1-501 UI设计实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-10-31",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Web应用安全与防护",
+      "classroom": "1-510 数据结构实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-10-27",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "实用语文",
+      "classroom": "综合教学楼阶4"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-10-28",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2025-10-30",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "大学体育（3）",
+      "classroom": "未知教室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-10-31",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-10-27",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "数据结构",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-10-28",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-10-31",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    }
+  ],
+  "08": [
+    {
+      "weekday": "Monday",
+      "date": "2025-11-03",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-11-04",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "软件测试",
+      "classroom": "1-501 UI设计实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-11-05",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "软件建模技术",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-11-03",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-11-04",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "软件测试",
+      "classroom": "1-501 UI设计实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-11-05",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "创新创业教育",
+      "classroom": "综合教学楼阶3"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-11-03",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "实用语文",
+      "classroom": "综合教学楼阶4"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-11-04",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2025-11-06",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "创新创业教育",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-11-03",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "数据结构",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-11-04",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    }
+  ],
+  "09": [
+    {
+      "weekday": "Monday",
+      "date": "2025-11-10",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-11-11",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "软件测试",
+      "classroom": "1-501 UI设计实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-11-12",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "软件建模技术",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-11-10",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-11-11",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "软件测试",
+      "classroom": "1-501 UI设计实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-11-12",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "创新创业教育",
+      "classroom": "综合教学楼阶3"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2025-11-13",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Web应用安全与防护",
+      "classroom": "1-402 智能合约开发实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-11-14",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Web应用安全与防护",
+      "classroom": "1-510 数据结构实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-11-10",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "实用语文",
+      "classroom": "综合教学楼阶4"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-11-11",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-11-12",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "创新创业教育",
+      "classroom": "综合教学楼206"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2025-11-13",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "创新创业教育",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-11-14",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-11-10",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "数据结构",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-11-11",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-11-14",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    }
+  ],
+  "10": [
+    {
+      "weekday": "Monday",
+      "date": "2025-11-17",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-11-18",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "软件测试",
+      "classroom": "1-501 UI设计实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-11-19",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "软件建模技术",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-11-17",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-11-18",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "软件测试",
+      "classroom": "1-501 UI设计实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-11-19",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "创新创业教育",
+      "classroom": "综合教学楼阶3"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-11-21",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Web应用安全与防护",
+      "classroom": "1-510 数据结构实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-11-17",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "实用语文",
+      "classroom": "综合教学楼阶4"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-11-18",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2025-11-20",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "创新创业教育",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-11-21",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-11-17",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "数据结构",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-11-18",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-11-21",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    }
+  ],
+  "11": [
+    {
+      "weekday": "Monday",
+      "date": "2025-11-24",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-11-25",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "软件测试",
+      "classroom": "1-501 UI设计实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-11-26",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "软件建模技术",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-11-24",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-11-25",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "软件测试",
+      "classroom": "1-501 UI设计实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-11-26",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "创新创业教育",
+      "classroom": "综合教学楼阶3"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-11-28",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Web应用安全与防护",
+      "classroom": "1-510 数据结构实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-11-24",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "实用语文",
+      "classroom": "综合教学楼阶4"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-11-25",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-11-26",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2025-11-27",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "创新创业教育",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-11-28",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-11-24",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "数据结构",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-11-25",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-11-26",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-11-28",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Sunday",
+      "date": "2025-11-30",
+      "section": "第五大节 (09,10小节) 19:00-20:40",
+      "name": "职业规划与就业指导（1）",
+      "classroom": "未知教室"
+    }
+  ],
+  "12": [
+    {
+      "weekday": "Monday",
+      "date": "2025-12-01",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-12-03",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "软件建模技术",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-12-01",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-12-03",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "创新创业教育",
+      "classroom": "综合教学楼阶3"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-12-05",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Web应用安全与防护",
+      "classroom": "1-510 数据结构实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-12-01",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "实用语文",
+      "classroom": "综合教学楼阶4"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-12-02",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2025-12-04",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "创新创业教育",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-12-05",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-12-01",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "数据结构",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-12-02",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-12-05",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    }
+  ],
+  "13": [
+    {
+      "weekday": "Monday",
+      "date": "2025-12-08",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-12-10",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "软件建模技术",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2025-12-11",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "Java Web应用开发",
+      "classroom": "1-402 智能合约开发实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-12-08",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-12-10",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "创新创业教育",
+      "classroom": "综合教学楼阶3"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2025-12-11",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Java Web应用开发",
+      "classroom": "1-402 智能合约开发实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-12-12",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Web应用安全与防护",
+      "classroom": "1-510 数据结构实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-12-08",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "实用语文",
+      "classroom": "综合教学楼阶4"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-12-09",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2025-12-11",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "创新创业教育",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-12-12",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-12-08",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "数据结构",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-12-09",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web前端开发",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-12-12",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    }
+  ],
+  "14": [
+    {
+      "weekday": "Monday",
+      "date": "2025-12-15",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-12-17",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "软件建模技术",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2025-12-18",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "Java Web应用开发",
+      "classroom": "1-402 智能合约开发实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-12-15",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2025-12-18",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Java Web应用开发",
+      "classroom": "1-402 智能合约开发实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-12-19",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Web应用安全与防护",
+      "classroom": "1-510 数据结构实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-12-15",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "实用语文",
+      "classroom": "综合教学楼阶4"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-12-19",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-12-15",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "数据结构",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-12-19",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2025-12-16",
+      "section": "第五大节 (09,10小节) 19:00-20:40",
+      "name": "心理卫生与健康",
+      "classroom": "未知教室"
+    }
+  ],
+  "15": [
+    {
+      "weekday": "Monday",
+      "date": "2025-12-22",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-12-24",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "软件建模技术",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2025-12-25",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "Java Web应用开发",
+      "classroom": "1-402 智能合约开发实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-12-22",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2025-12-25",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Java Web应用开发",
+      "classroom": "1-402 智能合约开发实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-12-26",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Web应用安全与防护",
+      "classroom": "1-510 数据结构实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-12-22",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "实用语文",
+      "classroom": "综合教学楼阶4"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-12-26",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-12-22",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "数据结构",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2025-12-26",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    }
+  ],
+  "16": [
+    {
+      "weekday": "Monday",
+      "date": "2025-12-29",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2025-12-31",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "软件建模技术",
+      "classroom": "1-506 游戏引擎应用实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-12-29",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2026-01-02",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "Web应用安全与防护",
+      "classroom": "1-510 数据结构实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-12-29",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "实用语文",
+      "classroom": "综合教学楼阶4"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2026-01-02",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2025-12-29",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "数据结构",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2026-01-02",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "Java Web应用开发",
+      "classroom": "1-502 信息检索沟通与演讲实训室"
+    }
+  ],
+  "17": [
+    {
+      "weekday": "Monday",
+      "date": "2026-01-05",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2026-01-07",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "企业应用开发实训",
+      "classroom": "1-215 界面设计实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2026-01-09",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2026-01-05",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2026-01-07",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "企业应用开发实训",
+      "classroom": "1-215 界面设计实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2026-01-09",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2026-01-06",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2026-01-08",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2026-01-05",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "数据结构",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2026-01-06",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2026-01-08",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    }
+  ],
+  "18": [
+    {
+      "weekday": "Monday",
+      "date": "2026-01-12",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2026-01-14",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "企业应用开发实训",
+      "classroom": "1-215 界面设计实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2026-01-16",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2026-01-12",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2026-01-14",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "企业应用开发实训",
+      "classroom": "1-215 界面设计实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2026-01-16",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2026-01-13",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2026-01-15",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2026-01-13",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2026-01-15",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    }
+  ],
+  "19": [
+    {
+      "weekday": "Monday",
+      "date": "2026-01-19",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2026-01-21",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "企业应用开发实训",
+      "classroom": "1-215 界面设计实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2026-01-23",
+      "section": "第一大节 (01,02小节) 08:20-09:55",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Monday",
+      "date": "2026-01-19",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Wednesday",
+      "date": "2026-01-21",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "企业应用开发实训",
+      "classroom": "1-215 界面设计实训室"
+    },
+    {
+      "weekday": "Friday",
+      "date": "2026-01-23",
+      "section": "第二大节 (03,04小节) 10:15-11:50",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2026-01-20",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2026-01-22",
+      "section": "第三大节 (05,06小节) 14:00-15:35",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Tuesday",
+      "date": "2026-01-20",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    },
+    {
+      "weekday": "Thursday",
+      "date": "2026-01-22",
+      "section": "第四大节 (07,08小节) 15:55-17:30",
+      "name": "企业应用开发实训",
+      "classroom": "1-201 图像处理实训室"
+    }
+  ],
+  "20": [],
+  "21": []
+}

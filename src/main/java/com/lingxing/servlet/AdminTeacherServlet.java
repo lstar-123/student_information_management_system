@@ -38,17 +38,21 @@ public class AdminTeacherServlet extends HttpServlet {
 
     private void handleAdd(HttpServletRequest req) throws Exception {
         String name = req.getParameter("teacherName");
+        String teacherClass = req.getParameter("teacherClass");
+        String teacherSubject = req.getParameter("teacherSubject");
         if (name == null || name.trim().isEmpty()) {
             throw new Exception("教师姓名不能为空");
         }
         String number = generateUniqueTeacherNumber();
-        
+
         try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
             TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);
             Teacher teacher = new Teacher();
             teacher.setTeacherNumber(number);
             teacher.setTeacherName(name.trim());
             teacher.setPassword("12345678");
+            teacher.setTeacherClass(teacherClass);
+            teacher.setTeacherSubject(teacherSubject);
             mapper.insert(teacher);
         }
     }
@@ -58,17 +62,21 @@ public class AdminTeacherServlet extends HttpServlet {
         if (idStr == null) throw new Exception("缺少教师ID");
         int teacherId = Integer.parseInt(idStr);
         String name = req.getParameter("teacherName");
+        String teacherClass = req.getParameter("teacherClass");
+        String teacherSubject = req.getParameter("teacherSubject");
         String password = req.getParameter("password");
         if (name == null || name.trim().isEmpty()) {
             throw new Exception("教师姓名不能为空");
         }
         String pwd = (password == null || password.trim().isEmpty()) ? "12345678" : password;
-        
+
         try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
             TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);
             Teacher teacher = new Teacher();
             teacher.setTeacherId(teacherId);
             teacher.setTeacherName(name.trim());
+            teacher.setTeacherClass(teacherClass);
+            teacher.setTeacherSubject(teacherSubject);
             teacher.setPassword(pwd);
             mapper.update(teacher);
         }

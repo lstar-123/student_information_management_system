@@ -8,12 +8,18 @@
         return;
     }
     Student stu = (Student) obj;
+    
+    // 获取当前选中的功能，默认为成绩查询
+    String activeTab = request.getParameter("tab");
+    if (activeTab == null || activeTab.isEmpty()) {
+        activeTab = "scores";
+    }
 %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>我的成绩 - 学生成绩管理系统</title>
+    <title><%= "scores".equals(activeTab) ? "我的成绩" : "课程表" %> - 学生成绩管理系统</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -94,6 +100,45 @@
             border-bottom: 1px solid rgba(148,163,184,.15);
         }
 
+        /* ================= 功能切换导航 ================= */
+        .function-nav {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .function-nav .nav-btn {
+            padding: 14px 28px;
+            border-radius: 16px;
+            border: 1px solid rgba(148,163,184,.25);
+            background: rgba(15,23,42,.6);
+            color: #c7d2fe;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .function-nav .nav-btn:hover {
+            background: rgba(99,102,241,.15);
+            border-color: rgba(99,102,241,.4);
+            transform: translateY(-2px);
+        }
+        
+        .function-nav .nav-btn.active {
+            background: linear-gradient(135deg, #6366f1, #3b82f6);
+            border-color: transparent;
+            color: #ffffff;
+            box-shadow: 0 8px 25px rgba(99,102,241,.35);
+        }
+        
+        .function-nav .nav-btn .icon {
+            font-size: 20px;
+        }
+
         .nav-tabs .nav-link {
             color: #c7d2fe;
         }
@@ -126,7 +171,7 @@
     <!-- ===== 导航栏 ===== -->
     <nav class="navbar navbar-expand-lg mb-3">
         <div class="container-fluid">
-            <span class="navbar-brand">学生端 - 成绩查询</span>
+            <span class="navbar-brand">学生端 - <%= "scores".equals(activeTab) ? "成绩查询" : "课程表" %></span>
 
             <div class="d-flex align-items-center gap-3">
                 <a href="<%=request.getContextPath()%>/student/semester_review.jsp"
@@ -149,6 +194,19 @@
     <!-- ===== 主体 ===== -->
     <div class="container">
 
+        <!-- 功能切换导航 -->
+        <div class="function-nav">
+            <a href="?tab=scores" class="nav-btn <%= "scores".equals(activeTab) ? "active" : "" %>">
+                <span class="icon">📝</span>
+                <span>成绩查询</span>
+            </a>
+            <a href="?tab=schedule" class="nav-btn <%= "schedule".equals(activeTab) ? "active" : "" %>">
+                <span class="icon">📅</span>
+                <span>课程表</span>
+            </a>
+        </div>
+
+        <% if ("scores".equals(activeTab)) { %>
         <!-- 学期回顾卡片 -->
         <div class="row g-3 mb-3">
             <div class="col-12">
@@ -173,38 +231,18 @@
         <div class="row g-3">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <ul class="nav nav-tabs card-header-tabs" role="tablist">
-                            <li class="nav-item">
-                                <button class="nav-link active"
-                                        data-bs-toggle="tab"
-                                        data-bs-target="#mid"
-                                        type="button">
-                                    期中成绩
-                                </button>
-                            </li>
-                            <li class="nav-item">
-                                <button class="nav-link"
-                                        data-bs-toggle="tab"
-                                        data-bs-target="#final"
-                                        type="button">
-                                    期末成绩
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
+                    <div class="card-header">成绩总览</div>
 
-                    <div class="card-body tab-content">
-                        <div class="tab-pane fade show active" id="mid">
-                            <jsp:include page="scores_mid.jsp"/>
-                        </div>
-                        <div class="tab-pane fade" id="final">
-                            <jsp:include page="scores_final.jsp"/>
-                        </div>
+                    <div class="card-body">
+                        <jsp:include page="scores_all.jsp"/>
                     </div>
                 </div>
             </div>
         </div>
+        <% } else { %>
+        <!-- 课程表 -->
+        <jsp:include page="course_schedule.jsp"/>
+        <% } %>
 
     </div>
 </div>

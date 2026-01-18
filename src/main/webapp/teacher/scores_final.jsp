@@ -29,13 +29,69 @@
 </style>
 
 <%
+    Student stuObj = (Student) session.getAttribute("currentUser");
+    if (stuObj == null) {
+        return;
+    }
+    Teacher teacher = (Teacher) session.getAttribute("currentUser");
+    if (teacher == null) {
+        return;
+    }
+
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
     try {
         conn = DBUtil.getConnection();
+
+        // 获取教师负责的班级和科目
+        String teacherClass = teacher.getTeacherClass();
+        String teacherSubject = teacher.getTeacherSubject();
+
+        if (teacherClass == null || teacherClass.trim().isEmpty()) {
+%>
+        <div class="alert alert-warning">您尚未设置负责班级，请联系管理员设置。</div>
+<%
+            return;
+        }
+        if (teacherSubject == null || teacherSubject.trim().isEmpty()) {
+%>
+        <div class="alert alert-warning">您尚未设置负责科目，请联系管理员设置。</div>
+<%
+            return;
+        }
+
+        // 解析负责的班级和科目
+        java.util.List<String> allowedClasses = new java.util.ArrayList<>();
+        java.util.List<String> allowedSubjects = new java.util.ArrayList<>();
+
+        String[] classArray = teacherClass.split(",");
+        for (String cls : classArray) {
+            allowedClasses.add(cls.trim());
+        }
+
+        String[] subjectArray = teacherSubject.split(",");
+        for (String subj : subjectArray) {
+            allowedSubjects.add(subj.trim());
+        }
+
+        // 构建IN条件
+        StringBuilder classCondition = new StringBuilder();
+        for (int i = 0; i < allowedClasses.size(); i++) {
+            if (i > 0) classCondition.append(",");
+            classCondition.append("'").append(allowedClasses.get(i)).append("'");
+        }
+
+        StringBuilder subjectCondition = new StringBuilder();
+        for (int i = 0; i < allowedSubjects.size(); i++) {
+            if (i > 0) subjectCondition.append(",");
+            subjectCondition.append("'").append(allowedSubjects.get(i)).append("'");
+        }
+
+        // 查询符合条件的课程
         Statement courseStmt = conn.createStatement();
-        ResultSet courseRs = courseStmt.executeQuery("SELECT course_id, course_name FROM tb_course ORDER BY course_id");
+        String courseQuery = "SELECT course_id, course_name FROM tb_course WHERE course_name IN (" + subjectCondition.toString() + ") ORDER BY course_id";
+        ResultSet courseRs = courseStmt.executeQuery(courseQuery);
         java.util.List<Integer> courseIds = new java.util.ArrayList<>();
         java.util.List<String> courseNames = new java.util.ArrayList<>();
         while (courseRs.next()) {
@@ -52,10 +108,9 @@
                 sql.append(", MAX(CASE WHEN s.course_id = ").append(courseIds.get(i))
                         .append(" THEN s.score END) AS `").append(courseNames.get(i)).append("`");
             }
-            sql.append(", SUM(s.score) AS `总分` ");
             sql.append("FROM tb_score s ");
             sql.append("JOIN tb_student st ON s.stu_id = st.stu_id ");
-            sql.append("WHERE s.exam_type = ? ");
+            sql.append("WHERE s.exam_type = ? AND st.stu_class IN (").append(classCondition.toString()).append(") ");
             sql.append("GROUP BY st.stu_id, st.stu_name");
             ps = conn.prepareStatement(sql.toString());
             ps.setString(1, "期末");
@@ -72,7 +127,6 @@
                 <%
                 }
                 %>
-                <th>总分</th>
             </tr>
             </thead>
             <tbody>
@@ -90,16 +144,13 @@
                 <td><%= v == null ? "-" : v %></td>
                 <%
                 }
-                Object total = rs.getObject("总分");
-                %>
-                <td><%= total == null ? "-" : total %></td>
             </tr>
             <%
             }
             if (!hasData) {
             %>
             <tr>
-                <td colspan="<%= courseNames.size() + 2 %>" class="text-center text-muted">暂无期末成绩。</td>
+                <td colspan="<%= courseNames.size() + 1 %>" class="text-center text-muted">暂无期末成绩。</td>
             </tr>
             <%
             }
